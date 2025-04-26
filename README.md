@@ -14,12 +14,6 @@ Este repositório reúne a resolução de exercícios realizados ao longo da dis
 - Estruturas para representação de árvores
 - Árvores binárias e suas aplicações
 
-## 📁 Estrutura do repositório
-
-```
-- [Alocação Dinamica e Struct](./Alocação Dinamica e Struct)  
-
-```
 
 ## 🛠️ Como compilar e executar
 
