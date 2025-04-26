@@ -65,7 +65,7 @@ void calculaGasto(Cliente *clientes, int n){
 
         if(saldoCliente + 0.0001 >= total){
             livrosComprados = Q;
-            saldoCliente -= total; 
+            saldoCliente -= total;
         }else{
             livrosComprados = 0;
         }
