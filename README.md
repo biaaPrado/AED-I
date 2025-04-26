@@ -14,14 +14,6 @@ Este repositório reúne a resolução de exercícios realizados ao longo da dis
 - Estruturas para representação de árvores
 - Árvores binárias e suas aplicações
 
-## 📁 Estrutura do repositório
-
-```
-/
-├── Alocacao_dinamica_e_ponteiros/    # Exercícios sobre alocação dinâmica e ponteiros
-│
-└── README.md            # Este arquivo
-```
 
 ## 🛠️ Como compilar e executar
 
