@@ -17,10 +17,8 @@ Este repositório reúne a resolução de exercícios realizados ao longo da dis
 ## 📁 Estrutura do repositório
 
 ```
-/
-├── Alocacao_dinamica_e_ponteiros/    # Exercícios sobre alocação dinâmica e ponteiros
-│
-└── README.md            # Este arquivo
+- [Alocação Dinamica e Struct](./Alocação Dinamica e Struct)  
+
 ```
 
 ## 🛠️ Como compilar e executar
