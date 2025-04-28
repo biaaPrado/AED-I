@@ -26,26 +26,31 @@ void lerDados(Cliente *clientes, int n){ //recebe a struct como paramêtro e a q
         float D;
         int Q;
 
-        do{
-            scanf("%f %d", &D, &Q); //lê o saldo e qntd de livros, fazendo as devidas verificações
-        }while(D < 0 || Q < 0 || Q > 100);
+        scanf("%f %d", &D, &Q); //lê o saldo e qntd de livros, fazendo as devidas verificações
+
+        if(D < 0 || Q < 0 || Q > 100){
+            exit(0);
+        }
 
         clientes[i].dinheiro = D;
         clientes[i].qtde = Q;
 
         clientes[i].precos = (float*) malloc(Q * sizeof(float)); //aloca espaços para os preços
+        if(clientes[i].precos == NULL){
+            exit(0);
+        }
+
         float* P = clientes[i].precos; 
     
 
         for (j=0; j<Q; j++){ //recebe os precos dos livros escolhidos pelo cliente
             scanf("%f", &P[j]); 
-            while(P[j] < 0){ //verifica se o  preço dos livros é maior que 0
-                scanf("%f", &P[j]);
+            if(P[j]<0){
+                exit(0);
             }
         }
 
         qsort(P, Q, sizeof(float), ordena); //ordena os preços em ordem crescente
-
     }
 }
 
@@ -58,16 +63,13 @@ void calculaGasto(Cliente *clientes, int n){
         float saldoCliente = clientes[i].dinheiro;
         float* P = clientes[i].precos;
 
-        float total = 0.0;
         for(j=0; j<Q; j++){
-            total += P[j];
-        }
-
-        if(saldoCliente + 0.0001 >= total){
-            livrosComprados = Q;
-            saldoCliente -= total;
-        }else{
-            livrosComprados = 0;
+           if(saldoCliente >= P[j]){
+                saldoCliente -= P[j];
+                livrosComprados++;
+           }else{
+                break;
+           }
         }
 
         printf("%d %.2f\n", livrosComprados, saldoCliente);
@@ -80,11 +82,18 @@ int main(){
     int n;
     scanf("%d", &n);
 
-    while(n<0 || n>100){ //verifica se a quantidade de clientes é válida no intervalo
-        scanf("%d", &n);
+    if(n<=0 || n>100){ //verifica se a quantidade de clientes é válida no intervalo
+        return 0;
+    }
+    if(n == 0){
+        return 0;
     }
 
     Cliente *clientes = (Cliente*) malloc(n * sizeof(Cliente)); //aloca espaço para a struct clientes
+
+    if(clientes == NULL){
+        return 0;
+    }
 
     lerDados(clientes, n);
     calculaGasto(clientes, n);
