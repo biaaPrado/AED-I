@@ -108,7 +108,7 @@ void mult(Pilha* p){
 void divisao(Pilha* p){
     if(p->tam < 2){
         printf("Erro: Faltam elementos na pilha!\n");
-        exit(EXIT_FAILURE);
+        exit(0);
     }
     int a = pop(p);
     if(a == 0){
@@ -162,7 +162,7 @@ void roll(Pilha* p, int n){
  
  
 int main(){
-    Pilha p;
+    Pilha p =;
     inicializa(&p);
  
     int N, ch;
@@ -175,7 +175,8 @@ int main(){
  
     int i;
     for (i=0; i<N; i++){
-        char comando[10];
+        char str[50], comando[10];
+        
         if(scanf("%9s", comando) != 1) {
             return 1;
         }
@@ -203,10 +204,6 @@ int main(){
         }
         else if(strcmp(comando, "CLEAR") == 0){clearPilha(&p);}
         else if(strcmp(comando, "PRINT") == 0){printPilha(&p);}
- 
-        do {
-            ch = getchar();
-        } while (ch != '\n' && ch != EOF);
     } 
  
     return 0;
