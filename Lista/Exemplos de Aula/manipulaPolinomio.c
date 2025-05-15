@@ -14,6 +14,8 @@ PLista insere(PLista l, float c, int e){
     novo->coef = c;
     novo->expo = e;
     novo->prox = l;
+    if (c==0)
+        return l;
     return(novo);
 }
 
@@ -49,31 +51,26 @@ void libera(PLista l){
 }
 
 PLista somaPolinomios(PLista l1, PLista l2){
-    PLista lr = NULL;
+    PLista lr = NULL, q1, q2;
 
-    while(l1 != NULL && l2 != NULL){
-        if(l1->expo < l2->expo){
-            lr = insere(lr, l1->coef, l1->expo);
-            l1 = l1->prox;
-        }else if(l2->expo < l1->expo){
-            lr = insere(lr, l2->coef, l2->expo);
-            l2 = l2->prox;
+    if(l1==NULL && l2==NULL)
+        return NULL;
+
+    q1 = l1, q2 = l2;
+
+    while(q1 != NULL || q2 != NULL){
+        if(q1  == NULL || (q2!=NULL && q1->expo > q2->expo)){
+            lr = insere(lr, q2->coef, q2->expo);
+            q2 = q2->prox;
+        }else if(q2==NULL || (q1!=NULL && q1->expo < q2->expo)){
+            lr = insere(lr, q1->coef, q1->expo);
+            q1 = q1->prox;
         }else{
-            float soma = l1->coef+l2->coef;
-            if(soma!=0)
-                lr = insere(lr, soma, l1->expo);
-            l1 = l1->prox;
-            l2 = l2->prox;
+            q1 != NULL, q2 != NULL;
+            lr = insere(lr, q1->coef+q2->coef, q1->expo);
+            q1 = q1->prox;
+            q2 = q2->prox;
         }
-    }
-
-    while(l1!=NULL){
-        lr = insere(lr, l1->coef, l1->expo);
-        l1 = l1->prox;
-    }
-    while(l2!=NULL){
-        lr = insere(lr, l2->coef, l2->expo);
-        l2 = l2->prox;
     }
 
     return lr;
