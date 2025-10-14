@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h> 
+
 #define MAX_TAM 1001
 
 typedef struct {
@@ -16,33 +18,39 @@ int vazio(Pilha *p) {
 
 void empilha(Pilha *p, char item) {
     if (p->topo < MAX_TAM - 1) {
-        p->itens[++(p->topo)] = item;
+        p->topo++; // Incrementa o topo PRIMEIRO
+        p->itens[p->topo] = item; // DEPOIS insere o item
     }
 }
 
-char desempilha(Pilha *p) {
+void desempilha(Pilha *p) {
     if (!vazio(p)) {
         p->topo--;
     }
 }
 
-int main(){
+int main() {
+    int N;
     char expressao[MAX_TAM];
 
-    while(scanf("%s", expressao) != EOF){
+    scanf("%d", &N);
+    getchar();
+
+    while (N > 0) {
+        fgets(expressao, MAX_TAM, stdin);
+        expressao[strcspn(expressao, "\n")] = 0;
 
         Pilha pilha;
         inicializa(&pilha);
 
         int expressaoValida = 1;
-        int i;
         int tam = strlen(expressao);
 
-       for(i=0; i<tam; i++){
-            if(expressao[i] == '('){
+        for (int i = 0; i < tam; i++) {
+            if (expressao[i] == '(') {
                 empilha(&pilha, expressao[i]);
-            } else if(expressao[i] == ')'){
-                if(vazio(&pilha)){
+            } else if (expressao[i] == ')') {
+                if (vazio(&pilha)) {
                     expressaoValida = 0;
                     break;
                 } else {
@@ -51,11 +59,14 @@ int main(){
             }
         }
 
-        if(expressaoValida && vazio(&pilha)){
+        if (expressaoValida && vazio(&pilha)) {
             printf("correct\n");
         } else {
             printf("incorrect\n");
         }
+
+        N--; 
     }
+
     return 0;
 }
