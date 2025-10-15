@@ -8,6 +8,7 @@ Este repositório reúne a resolução de exercícios realizados ao longo da dis
 - Manipulação de arquivos
 - Tipos abstratos de dados (TADs): conceitos, operações e representações
 - Listas, pilhas e filas
+- Algoritmos de Ordenação: Insertion, Selection, HeapSort, MergeSort, QuickSort
 - Estruturas de representação de grafos:
   - Matriz de adjacência
   - Matriz de incidência
