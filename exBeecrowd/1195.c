@@ -22,33 +22,27 @@ No* inserir(No *raiz, int x) {
     return raiz;
 }
 
-void preOrdem(No *raiz) {
-    if (raiz != NULL) {
-        printf("%d", raiz->valor);
-        if (raiz->esq != NULL || raiz->dir != NULL) printf(" ");
-        if (raiz->esq) {
-            preOrdem(raiz->esq);
-            if (raiz->dir) printf(" ");
-        }
-        if (raiz->dir) preOrdem(raiz->dir);
+void imprimePre(No *r) {
+    if (r) {
+        printf(" %d", r->valor);
+        imprimePre(r->esq);
+        imprimePre(r->dir);
     }
 }
 
-void inOrdem(No *raiz) {
-    if (raiz != NULL) {
-        inOrdem(raiz->esq);
-        printf("%d", raiz->valor);
-        if (raiz->dir != NULL) printf(" ");
-        inOrdem(raiz->dir);
+void imprimeIn(No *r) {
+    if (r) {
+        imprimeIn(r->esq);
+        printf(" %d", r->valor);
+        imprimeIn(r->dir);
     }
 }
 
-void posOrdem(No *raiz) {
-    if (raiz != NULL) {
-        posOrdem(raiz->esq);
-        posOrdem(raiz->dir);
-        printf("%d", raiz->valor);
-        if (!(raiz->esq == NULL && raiz->dir == NULL)) printf(" ");
+void imprimePost(No *r) {
+    if (r) {
+        imprimePost(r->esq);
+        imprimePost(r->dir);
+        printf(" %d", r->valor);
     }
 }
 
@@ -60,10 +54,11 @@ void liberaArvore(No *raiz) {
 }
 
 int main() {
-    int C; // número de casos
+    int C;
     scanf("%d", &C);
 
     for (int caso = 1; caso <= C; caso++) {
+
         int N, x;
         No *raiz = NULL;
 
@@ -74,36 +69,16 @@ int main() {
         }
 
         printf("Case %d:\n", caso);
+
         printf("Pre.:");
-        void imprimePre(No *r) {
-            if (r) {
-                printf(" %d", r->valor);
-                imprimePre(r->esq);
-                imprimePre(r->dir);
-            }
-        }
         imprimePre(raiz);
         printf("\n");
 
         printf("In..:");
-        void imprimeIn(No *r) {
-            if (r) {
-                imprimeIn(r->esq);
-                printf(" %d", r->valor);
-                imprimeIn(r->dir);
-            }
-        }
         imprimeIn(raiz);
         printf("\n");
 
         printf("Post:");
-        void imprimePost(No *r) {
-            if (r) {
-                imprimePost(r->esq);
-                imprimePost(r->dir);
-                printf(" %d", r->valor);
-            }
-        }
         imprimePost(raiz);
         printf("\n\n");
 
